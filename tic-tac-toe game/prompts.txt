@@ -1,0 +1,27 @@
+Prompts to address typecast issues:
+Prompt 1: using swift ui code a tic-tac-toe game
+
+if gameBoard[pattern.first!] != "" && gameBoard[pattern.first!] == gameBoard[pattern.last!] && gameBoard[pattern.first!] == gameBoard[pattern[1]] {
+                winner = gameBoard[pattern.first!]
+                gameEnded = true
+                return
+            }
+
+
+Cannot convert value of type 'Int' to expected argument type 'Set<Int>.Index'
+Value of type 'Set<Int>' has no member 'last'
+
+Prompt 2: tic tac toe check if win logic in swift
+Returns same broken code 
+
+Prompt 3: using swift ui code a tic-tac-toe game with functional checkwin checkforwinner code
+Returns same broken code 
+
+Prompt 4: swift app 2 player tic-tac-toe with string winning condition code
+Returns checkWin function with proper and clever tostring typecasting using let(map)
+
+        for pattern in winningPatterns {
+            let moves = pattern.map { gameBoard[$0] }
+            if moves == [player, player, player] {
+                return true
+            }
