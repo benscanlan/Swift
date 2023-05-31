@@ -81,7 +81,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     private func playerJump() {
-        player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 50))
+        player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 5))
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
