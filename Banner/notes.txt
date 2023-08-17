@@ -1,0 +1,32 @@
+Cd Banner
+Swift build
+swift run 
+swift run YourTarget --sampleArgument "Hello, ArgumentParser!"
+
+https://www.avanderlee.com/swift/command-line-tool-package-manager/
+
+https://blog.martinp7r.com/posts/swift-commandline-tool/
+
+To use dependencies in a Swift executable with SwiftUI, you typically follow these steps:
+
+1. **Create a Swift Package**:
+   - Open Xcode and select "File" > "New" > "Swift Package..."
+   - Provide a name for your package and choose the appropriate settings.
+
+2. **Add Dependencies to Package.swift**:
+   - In the `Package.swift` file of your package, add your dependencies using the `dependencies` property.
+   - Specify the package name and the desired version range.
+
+3. **Import Dependencies**:
+   - In your executable project that uses SwiftUI, import the dependencies you added in your Swift package.
+
+4. **Use the Dependencies**:
+   - You can now use the imported dependencies in your SwiftUI executable code.
+
+5. **Building and Running**:
+   - Build your project to make sure the dependencies are fetched and integrated.
+   - Run your executable to see the results.
+
+Remember that SwiftUI is primarily used for building user interfaces, and Swift Package Manager (SPM) is a tool for managing dependencies in Swift projects. If you're building an executable with SwiftUI, the dependencies you add are typically related to other functional aspects of your application, such as networking, data manipulation, etc.
+
+Please note that the exact steps and details might vary depending on the specific dependencies you're using and the structure of your project. Make sure to refer to the documentation of the dependencies and SwiftUI for more accurate guidance.
