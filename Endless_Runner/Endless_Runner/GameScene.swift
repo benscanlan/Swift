@@ -82,6 +82,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     private func playerJump() {
         player.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 5))
+        // default goes back down? map doesnt move also
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
