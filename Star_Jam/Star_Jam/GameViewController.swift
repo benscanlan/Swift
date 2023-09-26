@@ -15,13 +15,13 @@ class GameViewController: NSViewController {
         scene.rootNode.addChildNode(cameraNode)
         
         // Place the camera
-        cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 20)
         
         // Create and add a light to the scene
         let lightNode = SCNNode()
         lightNode.light = SCNLight()
         lightNode.light!.type = .omni
-        lightNode.position = SCNVector3(x: 0, y: 10, z: 10)
+        lightNode.position = SCNVector3(x: 10, y: 10, z: 20)
         scene.rootNode.addChildNode(lightNode)
         
         // Create and add an ambient light to the scene
@@ -39,10 +39,10 @@ class GameViewController: NSViewController {
         scene.rootNode.addChildNode(earthNode)
         
         // Create the smaller sphere (satellite)
-        let satellite = SCNSphere(radius: 0.5)
+        let satellite = SCNSphere(radius: 0.23)
         let satelliteNode = SCNNode(geometry: satellite)
         satelliteNode.geometry?.firstMaterial?.diffuse.contents = NSColor.red
-        satelliteNode.position = SCNVector3(x: 6, y: 0, z: 0)
+        satelliteNode.position = SCNVector3(x: 10, y: 0, z: 0)
         earthNode.addChildNode(satelliteNode)
         
         // Animate the satellite to orbit the Earth
