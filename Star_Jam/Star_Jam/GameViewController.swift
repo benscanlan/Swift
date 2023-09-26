@@ -34,9 +34,17 @@ class GameViewController: NSViewController {
         // Create the larger sphere (Earth)
         let earth = SCNSphere(radius: 3.0)
         let earthNode = SCNNode(geometry: earth)
-        earthNode.geometry?.firstMaterial?.diffuse.contents = NSColor.blue // Change to blue
+        earthNode.geometry?.firstMaterial?.diffuse.contents = NSColor.blue
         earthNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: CGFloat(2 * Double.pi), z: 0, duration: 10)))
         scene.rootNode.addChildNode(earthNode)
+        
+        // Create a text label for Earth
+        let earthLabelGeometry = SCNText(string: "Earth", extrusionDepth: 0.1)
+        earthLabelGeometry.font = NSFont.systemFont(ofSize: 1.0)
+        earthLabelGeometry.firstMaterial?.diffuse.contents = NSColor.white
+        let earthLabelNode = SCNNode(geometry: earthLabelGeometry)
+        earthLabelNode.position = SCNVector3(x: 0, y: 4.0, z: 0)
+        earthNode.addChildNode(earthLabelNode)
         
         // Create the smaller sphere (satellite)
         let satellite = SCNSphere(radius: 0.23)
@@ -66,4 +74,3 @@ class GameViewController: NSViewController {
         scnView.backgroundColor = NSColor.black
     }
 }
-//test comment 
