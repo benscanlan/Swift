@@ -34,7 +34,7 @@ class GameViewController: NSViewController {
         // Create the larger sphere (Earth)
         let earth = SCNSphere(radius: 3.0)
         let earthNode = SCNNode(geometry: earth)
-        earthNode.geometry?.firstMaterial?.diffuse.contents = NSColor.green
+        earthNode.geometry?.firstMaterial?.diffuse.contents = NSColor.blue // Change to blue
         earthNode.runAction(SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: CGFloat(2 * Double.pi), z: 0, duration: 10)))
         scene.rootNode.addChildNode(earthNode)
         
