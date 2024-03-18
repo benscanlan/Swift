@@ -1,19 +1,8 @@
-//
-//  DataScannerViewController.swift
-//  upc_barcode_scanner
-//
-//  Created by Ben Scanlan on 3/17/24.
-//
-
-//import Foundation
-//@MainActor @objc
-//class DataScannerViewController
-
 import UIKit
 import AVFoundation
 
 protocol DataScannerDelegate: AnyObject {
-    func didDetectBarcode(code: String)
+    func didDetectQRCode(payload: String)
 }
 
 class DataScannerViewController: UIViewController, AVCaptureMetadataOutputObjectsDelegate {
@@ -23,8 +12,10 @@ class DataScannerViewController: UIViewController, AVCaptureMetadataOutputObject
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCamera()
+    }
 
-        // Setup camera capture session
+    func setupCamera() {
         captureSession = AVCaptureSession()
 
         guard let videoCaptureDevice = AVCaptureDevice.default(for: .video) else { return }
@@ -39,7 +30,6 @@ class DataScannerViewController: UIViewController, AVCaptureMetadataOutputObject
         if (captureSession.canAddInput(videoInput)) {
             captureSession.addInput(videoInput)
         } else {
-            // Handle failure to add input
             return
         }
 
@@ -49,9 +39,8 @@ class DataScannerViewController: UIViewController, AVCaptureMetadataOutputObject
             captureSession.addOutput(metadataOutput)
 
             metadataOutput.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
-            metadataOutput.metadataObjectTypes = [.upce, .code39, .code93, .code128, .code39Mod43, .ean8, .ean13]
+            metadataOutput.metadataObjectTypes = [.qr]
         } else {
-            // Handle failure to add output
             return
         }
 
@@ -70,9 +59,9 @@ class DataScannerViewController: UIViewController, AVCaptureMetadataOutputObject
             guard let readableObject = metadata as? AVMetadataMachineReadableCodeObject else { continue }
             guard let stringValue = readableObject.stringValue else { continue }
 
-            // Handle different types of detected codes
-            delegate?.didDetectBarcode(code: stringValue)
-            break // Break after detecting the first code
+            if readableObject.type == .qr {
+                delegate?.didDetectQRCode(payload: stringValue)
+            }
         }
     }
 }

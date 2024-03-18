@@ -1,11 +1,3 @@
-//
-//  MainViewController.swift
-//  upc_barcode_scanner
-//
-//  Created by Ben Scanlan on 3/17/24.
-//
-
-import Foundation
 import UIKit
 
 class MainViewController: UIViewController, DataScannerDelegate {
@@ -13,23 +5,21 @@ class MainViewController: UIViewController, DataScannerDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        startScanning()
+    }
 
-        // Initialize DataScannerViewController
+    func startScanning() {
         dataScannerVC = DataScannerViewController()
         dataScannerVC.delegate = self
-
-        // Add DataScannerViewController as child view controller
         addChild(dataScannerVC)
         view.addSubview(dataScannerVC.view)
         dataScannerVC.view.frame = view.bounds
         dataScannerVC.didMove(toParent: self)
     }
 
-    // Implement delegate method to handle detected barcode
-    func didDetectBarcode(code: String) {
-        print("Detected barcode: \(code)")
-        // Handle UPC barcode
-        // You can perform appropriate action based on the detected barcode
-        // For example, you can display it in a label or perform a specific action
+    func didDetectQRCode(payload: String) {
+        print("Detected QR Code with payload: \(payload)")
+        // Perform any action needed with the payload
     }
 }
+
