@@ -53,24 +53,17 @@
 //}
 
 
-import SwiftUI
+import UIKit
 
 @main
-struct BarcodeScannerApp: App {
-    var body: some Scene {
-        WindowGroup {
-            BarcodeScannerUIKitView()
-        }
-    }
-}
+class AppDelegate: UIResponder, UIApplicationDelegate {
+    var window: UIWindow?
 
-struct BarcodeScannerUIKitView: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> UIViewController {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        window = UIWindow(frame: UIScreen.main.bounds)
         let mainViewController = MainViewController()
-        return UINavigationController(rootViewController: mainViewController)
-    }
-
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        // Update the view controller if needed
+        window?.rootViewController = mainViewController
+        window?.makeKeyAndVisible()
+        return true
     }
 }
