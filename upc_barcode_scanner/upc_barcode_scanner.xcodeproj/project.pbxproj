@@ -10,8 +10,6 @@
 		261CDB1B2BA7BDFC004F7100 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CDB1A2BA7BDFC004F7100 /* AppDelegate.swift */; };
 		261CDB1D2BA7BDFE004F7100 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 261CDB1C2BA7BDFE004F7100 /* Assets.xcassets */; };
 		261CDB202BA7BDFE004F7100 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 261CDB1F2BA7BDFE004F7100 /* Preview Assets.xcassets */; };
-		261CDB272BA7BEE3004F7100 /* DataScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CDB262BA7BEE3004F7100 /* DataScannerViewController.swift */; };
-		261CDB292BA7C0F9004F7100 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261CDB282BA7C0F9004F7100 /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,8 +17,6 @@
 		261CDB1A2BA7BDFC004F7100 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		261CDB1C2BA7BDFE004F7100 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		261CDB1F2BA7BDFE004F7100 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		261CDB262BA7BEE3004F7100 /* DataScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataScannerViewController.swift; sourceTree = "<group>"; };
-		261CDB282BA7C0F9004F7100 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		261CDB2A2BA7E975004F7100 /* upc-barcode-scanner-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "upc-barcode-scanner-Info.plist"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -55,8 +51,6 @@
 			isa = PBXGroup;
 			children = (
 				261CDB2A2BA7E975004F7100 /* upc-barcode-scanner-Info.plist */,
-				261CDB262BA7BEE3004F7100 /* DataScannerViewController.swift */,
-				261CDB282BA7C0F9004F7100 /* MainViewController.swift */,
 				261CDB1A2BA7BDFC004F7100 /* AppDelegate.swift */,
 				261CDB1C2BA7BDFE004F7100 /* Assets.xcassets */,
 				261CDB1E2BA7BDFE004F7100 /* Preview Content */,
@@ -143,8 +137,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				261CDB1B2BA7BDFC004F7100 /* AppDelegate.swift in Sources */,
-				261CDB272BA7BEE3004F7100 /* DataScannerViewController.swift in Sources */,
-				261CDB292BA7C0F9004F7100 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,12 +274,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "upc-barcode-scanner-Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "camera is used for barcode scanning only";
+				INFOPLIST_KEY_NSCameraUsageDescription = "caamera is used for barcode scanning only";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -313,12 +305,12 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "upc-barcode-scanner-Info.plist";
-				INFOPLIST_KEY_NSCameraUsageDescription = "camera is used for barcode scanning only";
+				INFOPLIST_KEY_NSCameraUsageDescription = "caamera is used for barcode scanning only";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.7;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
