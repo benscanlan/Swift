@@ -11,3 +11,7 @@ Swift Tic-Tac-Toe
 Endless Runner Game
 
 <img src="https://github.com/benscanlan/Swift/blob/main/Endless_Runner/Screenshot%202023-05-31%20at%204.22.58%20PM.png" alt="App Image" width="25%" height="50%" title="Image title">
+
+Swift Barcode Reader .128 format
+
+<img src="https://github.com/benscanlan/Swift/blob/main/upc_barcode_scanner/IMG_4297.PNG" alt="App Image" width="25%" height="50%" title="Image title">
