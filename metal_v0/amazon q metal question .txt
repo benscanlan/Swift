@@ -1,0 +1,123 @@
+Last login: Mon Nov 25 00:56:15 on ttys001
+benscanlan@Bens-Mac-Studio ~ % q chat
+
+Hi, I'm Amazon Q. I can answer questions about your shell and CLI tools!
+You can include additional context by adding the following to your prompt:
+
+@history to pass your shell history
+@git to pass information about your current git repository
+@env to pass your shell environment
+
+> run a hello world swift script calling metal from the command line
+
+I'll help you create a simple Swift script that uses Metal to perform a basic 
+"Hello World" equivalent operation. This example will create a Metal compute 
+kernel that performs a simple calculation.
+
+First, create two files:
+
+1. kernel.metal: [1]
+metal
+#include <metal_stdlib>
+using namespace metal;
+
+kernel void hello_kernel(device float *output [[buffer(0)]],
+                        uint id [[thread_position_in_grid]]) {
+    output[id] = float(id) * 2.0; // Simple multiplication operation
+}
+
+
+2. main.swift:
+swift
+import Metal
+
+// Get the default Metal device
+guard let device = MTLCreateSystemDefaultDevice() else {
+    fatalError("Metal is not supported on this device")
+}
+
+// Create a command queue
+guard let commandQueue = device.makeCommandQueue() else {
+    fatalError("Could not create command queue")
+}
+
+// Create the Metal library and get the kernel function
+guard let library = device.makeDefaultLibrary(),
+      let function = library.makeFunction(name: "hello_kernel") else {
+    fatalError("Could not create Metal library or find kernel function")
+}
+
+// Create compute pipeline state
+guard let computePipelineState = try? device.makeComputePipelineState(function: function) else {
+    fatalError("Could not create compute pipeline state")
+}
+
+// Create input data
+let arrayLength = 10
+let bufferSize = arrayLength * MemoryLayout<Float>.stride
+guard let outputBuffer = device.makeBuffer(length: bufferSize, options: .storageModeShared) else {
+    fatalError("Could not create output buffer")
+}
+
+// Create command buffer and encoder
+guard let commandBuffer = commandQueue.makeCommandBuffer(),
+      let computeEncoder = commandBuffer.makeComputeCommandEncoder() else {
+    fatalError("Could not create command buffer or encoder")
+}
+
+// Configure and dispatch the compute encoder
+computeEncoder.setComputePipelineState(computePipelineState)
+computeEncoder.setBuffer(outputBuffer, offset: 0, index: 0)
+let threadsPerGrid = MTLSize(width: arrayLength, height: 1, depth: 1)
+let threadsPerThreadgroup = MTLSize(width: arrayLength, height: 1, depth: 1)
+computeEncoder.dispatchThreads(threadsPerGrid, threadsPerThreadgroup: threadsPerThreadgroup)
+computeEncoder.endEncoding()
+
+// Execute command buffer and wait for completion
+commandBuffer.commit()
+commandBuffer.waitUntilCompleted()
+
+// Read and print results
+let outputArray = outputBuffer.contents().bindMemory(to: Float.self, capacity: arrayLength)
+print("Results:")
+for i in 0..<arrayLength {
+    print("Element \(i): \(outputArray[i])")
+}
+
+
+To compile and run this:
+
+1. First, compile the Metal shader:
+zsh
+xcrun -sdk macosx metal -c kernel.metal -o kernel.air
+xcrun -sdk macosx metallib kernel.air -o default.metallib
+
+
+2. Then compile and run the Swift code:
+zsh
+swiftc main.swift -o hello_metal
+./hello_metal
+
+
+This program will:
+1. Initialize Metal
+2. Set up a compute pipeline
+3. Run a simple kernel that multiplies each array index by 2
+4. Print the results
+
+The output should show 10 numbers, where each number is its index multiplied by 
+2 (0, 2, 4, 6, etc.).
+
+Make sure both files are in the same directory when you run these commands. Also
+ensure that:
+• You're on macOS
+• You have Xcode and its command-line tools installed
+• Your device supports Metal
+
+This is a basic example that demonstrates the setup required to run Metal 
+computations from Swift. The Metal kernel performs a very simple calculation, 
+but you can modify it to do more complex operations.
+
+1 https://betterprogramming.pub/using-metal-in-swift-playgrounds-4-e100122d276a
+
+> 

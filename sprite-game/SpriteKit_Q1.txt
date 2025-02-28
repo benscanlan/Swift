@@ -1,0 +1,132 @@
+Last login: Tue Dec  3 15:10:44 on console
+benscanlan@Bens-Mac-Studio ~ % q chat
+
+Hi, I'm Amazon Q. I can answer questions about your shell and CLI tools!
+You can include additional context by adding the following to your prompt:
+
+@history to pass your shell history
+@git to pass information about your current git repository
+@env to pass your shell environment
+
+> Write a sprite kit game I can launch from the command line on Mac OS. 
+
+I'll help you create a simple SpriteKit game that can be launched from the 
+command line on macOS. This will be a basic example where a sprite moves across 
+the screen. [1]
+
+First, create a new directory for your project and create the following files:
+
+zsh
+mkdir sprite-game
+cd sprite-game
+touch main.swift GameScene.swift
+
+
+Here's the code for main.swift:
+
+swift
+import Cocoa
+import SpriteKit
+
+// Create the application
+let app = NSApplication.shared
+let delegate = AppDelegate()
+app.delegate = delegate
+
+// Run the application
+_ = NSApplicationMain(CommandLine.argc, CommandLine.unsafeArgv)
+
+class AppDelegate: NSObject, NSApplicationDelegate {
+    var window: NSWindow?
+    var gameView: SKView?
+    
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        // Create the window
+        let rect = NSRect(x: 0, y: 0, width: 800, height: 600)
+        window = NSWindow(contentRect: rect,
+                         styleMask: [.titled, .closable, .miniaturizable],
+                         backing: .buffered,
+                         defer: false)
+        
+        // Create the game view
+        gameView = SKView(frame: rect)
+        window?.contentView = gameView
+        
+        // Create and present the game scene
+        let scene = GameScene(size: rect.size)
+        scene.scaleMode = .aspectFit
+        gameView?.presentScene(scene)
+        
+        // Show the window
+        window?.title = "Sprite Game"
+        window?.center()
+        window?.makeKeyAndOrderFront(nil)
+    }
+}
+
+
+And here's the code for GameScene.swift:
+
+swift
+import SpriteKit
+
+class GameScene: SKScene {
+    private var sprite: SKSpriteNode?
+    
+    override func didMove(to view: SKView) {
+        // Create a simple colored square sprite
+        sprite = SKSpriteNode(color: .red, size: CGSize(width: 50, height: 50))
+        
+        if let sprite = sprite {
+            sprite.position = CGPoint(x: size.width/2, y: size.height/2)
+            addChild(sprite)
+            
+            // Add a simple animation
+            let moveRight = SKAction.moveBy(x: 100, y: 0, duration: 1.0)
+            let moveLeft = SKAction.moveBy(x: -100, y: 0, duration: 1.0)
+            let sequence = SKAction.sequence([moveRight, moveLeft])
+            let repeatForever = SKAction.repeatForever(sequence)
+            
+            sprite.run(repeatForever)
+        }
+    }
+    
+    override func mouseDown(with event: NSEvent) {
+        // Change sprite color on click
+        sprite?.color = .blue
+    }
+}
+
+
+To compile and run the game from the command line:
+
+zsh
+swiftc main.swift GameScene.swift -o game -framework Cocoa -framework SpriteKit
+./game
+
+
+This will create a simple game window with a red square that moves back and 
+forth. Clicking on the square will change its color to blue.
+
+This example demonstrates basic SpriteKit functionality including: [2]
+• Setting up a game window
+• Creating a basic sprite
+• Adding animation
+• Handling mouse input
+
+You can expand upon this by:
+• Adding more sprites
+• Implementing collision detection
+• Adding keyboard controls
+• Including game physics
+• Adding scoring system
+• Including sound effects
+
+Note that SpriteKit is only available on Apple platforms (macOS, iOS, tvOS). If 
+you need cross-platform compatibility, you might want to consider alternative 
+game frameworks.
+
+1 https://gamedev.stackexchange.com/questions/20757/how-can-i-create-a-simple-sprite-based-mac-game-in-xcode
+2 https://stackoverflow.com/questions/28396380
+
+> 

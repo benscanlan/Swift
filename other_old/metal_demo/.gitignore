@@ -1,0 +1,5 @@
+build/
+bin/
+*.metallib
+*.air
+.DS_Store
